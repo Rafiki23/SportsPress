@@ -49,6 +49,10 @@ class SP_Event extends SP_Custom_Post{
 
 		// Get results for all teams
 		$data = sp_array_combine( $teams, $results, true );
+		
+		if ( 'yes' === get_option( 'sportspress_event_reverse_teams', 'no' ) ) {
+			$data = array_reverse( $data, true );
+		}
 
 		if ( $admin ):
 			return array( $columns, $usecolumns, $data );
@@ -184,7 +188,7 @@ class SP_Event extends SP_Custom_Post{
 					if ( ! is_array( $players ) ) continue;
 
 					foreach ( $players as $player => $player_performance ):
-						if ( ! is_array( $player_performance ) || ! $player ) continue;
+						if ( ! is_array( $player_performance ) ) continue;
 
 						// Prepare existing values for equation calculation
 						$vars = $player_performance;

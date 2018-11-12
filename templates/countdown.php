@@ -107,13 +107,15 @@ if ( $link_events ) $title = '<a href="' . get_post_permalink( $post->ID, false,
 		</h3>
 		<?php
 		if ( isset( $show_date ) && $show_date ):
-			?>
-			<h5 class="event-date sp-event-date">
-				<?php
-				echo get_the_time( get_option( 'date_format' ), $post );
+			//if ( isset( $event_date ) ):
 				?>
-			</h5>
-			<?php
+				<h5 class="event-date sp-event-date">
+					<?php
+					echo get_the_time( get_option( 'date_format', $post ) ).' '.get_the_time( get_option( 'time_format', $post ) ).' (local time)';
+					?>
+				</h5>
+				<?php
+			//endif;
 		endif;
 		
 		if ( isset( $show_venue ) && $show_venue ):
